@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Книжный магазин Warhammer 40,000</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="shop__wrapper">
+        <div class="shop">
+            <nav class="shop__menu">
+                <ul class="menu">
+                    <li class="menu-item">
+                        <a href="./index.html">Главная</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="./product.html">Товар каталога (Игра предателя)</a>
+                    </li>
+                    <li class="menu-item menu-item--cart">
+                        <button id="cartToggleBtn">🛒 Корзина (<span id="cartCount">0</span>)</button>
+                    </li>
+                </ul>
+            </nav>
+            <div class="shop__container">
+                <div class="shop__content">
+                    <main class="shop__main">
+                        <h1 class="main-title">КНИЖНЫЙ МАГАЗИН WARHAMMER 40,000</h1>
+                        <p class="main-intro">
+                            Лучшие книги по вселенной Warhammer 40,000. Серия о комиссаре Каине, романы о ереси Хоруса и многое другое.
+                        </p>
+
+
+                        <div class="filter-section">
+                            <h2 class="filter-title">Фильтр по жанру</h2>
+                            <div class="filter-buttons" id="filterButtons"></div>
+                        </div>
+
+                        <div class="catalog" id="catalog"></div>
+                    </main>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="cartModal" class="cart-modal">
+        <div class="cart-modal-content">
+            <div class="cart-header">
+                <h2>Ваша корзина</h2>
+                <span class="cart-close">&times;</span>
+            </div>
+            <div id="cartItems" class="cart-items"></div>
+            <div class="cart-footer">
+                <div class="cart-total">Итого: <span id="cartTotal">0</span> руб.</div>
+                <div class="cart-buttons">
+                    <button id="clearCartBtn">Очистить корзину</button>
+                    <button id="checkoutBtn">Оплатить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
