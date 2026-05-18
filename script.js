@@ -12,6 +12,11 @@ const books = [
 
 let cart = [];
 
+// Функция сохранения корзины
+const saveCart = () => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+};
+
 const catalogDiv = document.getElementById('catalog');
 const filterDiv = document.getElementById('filterButtons');
 const cartModal = document.getElementById('cartModal');
@@ -58,12 +63,14 @@ const addToCart = (id) => {
     else cart.push({ ...book, quantity: 1 });
     updateCartUI();
     updateCartCount();
+    saveCart(); // <-- Вызов сохранения после добавления
 };
 
 const removeFromCart = (id) => {
     cart = cart.filter(item => item.id !== id);
     updateCartUI();
     updateCartCount();
+    saveCart(); // <-- Вызов сохранения после удаления
 };
 
 const updateCartUI = () => {
@@ -102,6 +109,7 @@ const clearCart = () => {
     cart = [];
     updateCartUI();
     updateCartCount();
+    saveCart(); // <-- Вызов сохранения после очистки
     alert('Корзина очищена');
 };
 
@@ -137,7 +145,17 @@ window.addEventListener('click', e => { if (e.target === cartModal) closeCart();
 clearCartBtn.addEventListener('click', clearCart);
 checkoutBtn.addEventListener('click', checkout);
 
+// Загрузка корзины из localStorage при старте ===
+const loadCart = () => {
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+        cart = JSON.parse(savedCart);
+    }
+};
+
+// Запускаем всё при старте скрипта
+loadCart(); // <-- Сначала загружаем данные из памяти
 initFilters();
 renderCatalog();
-updateCartUI();
+updateCartUI(); // <-- Отрисовываем интерфейс уже с загруженными данными
 updateCartCount();
